@@ -1,0 +1,3 @@
+/* trivial */
+
+int main() {}

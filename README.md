@@ -2,7 +2,7 @@
 
 ## About
 
-Solutions to exercises from The C Programming Language (2nd edition) by Brian Kernighan and Dennis Ritchie.
+Solutions to exercises from *The C Programming Language* (2nd edition) by Brian Kernighan and Dennis Ritchie.
 
 <!---
 

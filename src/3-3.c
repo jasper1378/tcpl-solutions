@@ -1,6 +1,6 @@
 #include <ctype.h>
 
-int expand(const char *s1, char *s2) {
+void expand(const char *s1, char *s2) {
   const char *r;
   char *w;
   char b;
@@ -19,12 +19,11 @@ int expand(const char *s1, char *s2) {
           *w++ = i;
         }
       } else {
-        return -1;
+        *w++ = *r;
       }
     } else {
       *w++ = *r;
     }
   }
   *w = '\0';
-  return 0;
 }

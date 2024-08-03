@@ -8,7 +8,7 @@ void ungetch(int);
 
 int getop(char s[]) {
   int i, c;
-  static int lc = '\0';
+  static int lc = ' ';
 
   if ((s[0] = c = lc) == ' ' || c == '\t')
     while ((s[0] = c = getch()) == ' ' || c == '\t')

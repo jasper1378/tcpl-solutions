@@ -17,14 +17,13 @@ int main() {
     while ((ch = getchar()) == ' ') {
       ++cnt;
     }
-    for (i = pos; (i + cnt) > NEXT_TABSTOP(i);
+    for (i = pos, pos += cnt; (i + cnt) > NEXT_TABSTOP(i);
          cnt -= (NEXT_TABSTOP(i) - i), i = NEXT_TABSTOP(i)) {
       putchar('\t');
     }
     for (; cnt > 0; --cnt) {
       putchar(' ');
     }
-    pos += cnt;
     if (ch == EOF) {
       break;
     } else {

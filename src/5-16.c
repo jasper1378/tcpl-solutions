@@ -160,7 +160,7 @@ int strcmp_(char *s1, char *s2, int flags) {
   (void)flags;
 
   for (; *s1 != '\0' && *s1 != '\0'; ++s1, ++s2) {
-    if (dirord_char(*s1) || dirord_char(*s2)) {
+    if (!(flags & S_DIRORD) || (dirord_char(*s1) || dirord_char(*s2))) {
       if (*s1 != *s2) {
         break;
       }

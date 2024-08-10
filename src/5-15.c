@@ -16,7 +16,7 @@ void afree(char *);
 int getline(char[], int);
 int readlines(char *[], int);
 void writelines(char *[], int);
-void qsort_(void *[], int, int, int (*)(void *, void *), int);
+void qsort_(void *[], int, int, int (*)(void *, void *, int), int);
 int numcmp(char *, char *, int);
 int strcmp_(char *, char *, int);
 void swap(void *[], int, int);
@@ -42,9 +42,10 @@ int main(int argc, char *argv[]) {
     }
   }
   if ((nlines = readlines(lineptr, MAXLINES)) >= 0) {
-    qsort_((void **)lineptr, 0, nlines - 1,
-           (int (*)(void *, void *))((flags & S_NUMERIC) ? numcmp : strcmp_),
-           flags);
+    qsort_(
+        (void **)lineptr, 0, nlines - 1,
+        (int (*)(void *, void *, int))((flags & S_NUMERIC) ? numcmp : strcmp_),
+        flags);
     writelines(lineptr, nlines);
     return 0;
   } else {
@@ -110,7 +111,7 @@ void writelines(char *lineptr[], int nlines) {
   }
 }
 
-void qsort_(void *v[], int left, int right, int (*comp)(void *, void *),
+void qsort_(void *v[], int left, int right, int (*comp)(void *, void *, int),
             int flags) {
   int i;
   int last;
@@ -124,7 +125,7 @@ void qsort_(void *v[], int left, int right, int (*comp)(void *, void *),
   swap(v, left, (left + right) / 2);
   last = left;
   for (i = left + 1; i <= right; i++) {
-    c = (*comp)(v[i], v[left]);
+    c = (*comp)(v[i], v[left], flags);
     if (c < 0) {
       swap(v, ++last, i);
     }

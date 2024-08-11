@@ -7,6 +7,7 @@ gcc \
   -g3 \
   -Wall \
   -Wextra \
+  -Wpedantic \
   -fsanitize=address \
   -fsanitize=undefined \
   $@

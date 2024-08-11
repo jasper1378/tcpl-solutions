@@ -23,8 +23,8 @@ void swap(void *[], int, int);
 
 enum {
   S_NONE = 0,
-  S_NUMERIC,
-  S_NOCASE,
+  S_NUMERIC = 1 << 0,
+  S_NOCASE = 1 << 1,
 };
 
 int main(int argc, char *argv[]) {

@@ -30,6 +30,8 @@ char *strndup(char *, int);
 struct tnode *addtree(struct tnode *p, char *w, int n) {
   int cond;
 
+  cond = 0;
+
   if (n < 0 && p == NULL) {
     p = talloc();
     p->u.member.word = strdup(w);
@@ -41,9 +43,9 @@ struct tnode *addtree(struct tnode *p, char *w, int n) {
     p->u.group.words = NULL;
     p->u.group.words = addtree(p->u.group.words, w, -1);
     p->left = p->right = NULL;
-  } else if ((cond = strcmp(w, p->u.member.word)) == 0 && n < 0) {
+  } else if (n < 0 && (cond = strcmp(w, p->u.member.word)) == 0) {
     p->u.member.count++;
-  } else if ((cond = strncmp(w, p->u.group.prefix, n)) == 0 && n > 0) {
+  } else if (n > 0 && (cond = strncmp(w, p->u.group.prefix, n)) == 0) {
     p->u.group.words = addtree(p->u.group.words, w, -1);
   } else if (cond < 0) {
     p->left = addtree(p->left, w, n);

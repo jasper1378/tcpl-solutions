@@ -1,4 +1,7 @@
+#include <stdio.h>
 #include <string.h>
+
+#define MAXSTR 100
 
 void reverse(char s[]) {
   static char *f = NULL;
@@ -21,4 +24,16 @@ void reverse(char s[]) {
     f = NULL;
     b = NULL;
   }
+}
+
+int main() {
+  char s[MAXSTR];
+
+  while (fgets(s, MAXSTR, stdin) != NULL) {
+    s[strcspn(s, "\n")] = '\0';
+    reverse(s);
+    puts(s);
+  }
+
+  return 0;
 }

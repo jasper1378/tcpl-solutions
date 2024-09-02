@@ -1,8 +1,8 @@
 #include <ctype.h>
 #include <stdio.h>
 
-int getch(void);
-void ungetch(int);
+#define getch() getchar()
+#define ungetch(c_) ungetc((c_), stdin)
 
 int getint(int *pn) {
   int c, sign;
@@ -26,4 +26,14 @@ int getint(int *pn) {
   if (c != EOF)
     ungetch(c);
   return c;
+}
+
+int main() {
+  int i;
+
+  while (getint(&i) > 0) {
+    printf("%d\n", i);
+  }
+
+  return 0;
 }

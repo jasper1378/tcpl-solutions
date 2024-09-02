@@ -1,5 +1,9 @@
 #include <ctype.h>
 #include <math.h>
+#include <stdio.h>
+#include <string.h>
+
+#define MAXSTR 100
 
 double atof(const char *s) {
   double val;
@@ -36,4 +40,15 @@ double atof(const char *s) {
     eval = 10.0 * eval + (s[i] - '0');
   }
   return (sign * val / power) * pow(10, esign * eval);
+}
+
+int main() {
+  char s[MAXSTR];
+
+  while (fgets(s, MAXSTR, stdin) != NULL) {
+    s[strcspn(s, "\n")] = '\0';
+    printf("%e\n", atof(s));
+  }
+
+  return 0;
 }

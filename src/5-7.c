@@ -1,11 +1,22 @@
+#include <stdio.h>
 #include <string.h>
 
-char *alloc(int n);
-void afree(char *p);
-int getline(char[], int);
-
-#define MAXLEN 1000
 #define MAXBUF 10000
+#define MAXLEN 1000
+#define MAXLINE 100
+
+int getline(char s[], int lim) {
+  int c, i;
+
+  for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
+    s[i] = c;
+  if (c == '\n') {
+    s[i] = c;
+    ++i;
+  }
+  s[i] = '\0';
+  return i;
+}
 
 int readlines(char *lineptr[], int maxlines, char *buf) {
   int len;
@@ -25,4 +36,19 @@ int readlines(char *lineptr[], int maxlines, char *buf) {
       p += len;
     }
   return nlines;
+}
+
+int main() {
+  char *lineptr[MAXLINE];
+  char buf[MAXBUF];
+  int nlines;
+  int i;
+
+  nlines = readlines(lineptr, MAXLINE, buf);
+
+  for (i = 0; i < nlines; ++i) {
+    puts(lineptr[i]);
+  }
+
+  return 0;
 }

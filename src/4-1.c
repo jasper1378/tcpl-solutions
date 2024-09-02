@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAXSTR 100
+
 int strindex(const char *s, const char *t) {
   int r;
   int i;
@@ -15,4 +20,17 @@ int strindex(const char *s, const char *t) {
   }
 
   return r;
+}
+
+int main() {
+  char s[MAXSTR];
+  char t[MAXSTR];
+
+  while (fgets(s, MAXSTR, stdin) != NULL && fgets(t, MAXSTR, stdin) != NULL) {
+    s[strcspn(s, "\n")] = '\0';
+    t[strcspn(t, "\n")] = '\0';
+    printf("%d\n", strindex(s, t));
+  }
+
+  return 0;
 }

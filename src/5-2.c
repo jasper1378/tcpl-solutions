@@ -2,8 +2,8 @@
 #include <math.h>
 #include <stdio.h>
 
-int getch(void);
-void ungetch(int);
+#define getch() getchar()
+#define ungetch(c_) ungetchar((c_), stdin)
 
 int getfloat(double *pn) {
   int c;
@@ -56,4 +56,14 @@ int getfloat(double *pn) {
   *pn *= s;
 
   return 1;
+}
+
+int main() {
+  double d;
+
+  while (getfloat(&d) > 0) {
+    printf("%f\n", d);
+  }
+
+  return 0;
 }

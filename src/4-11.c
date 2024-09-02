@@ -1,10 +1,11 @@
 #include <ctype.h>
 #include <stdio.h>
 
-#define NUMBER '0'
+#define MAXSTR 100
 
-int getch(void);
-void ungetch(int);
+#define getch() getchar()
+
+#define NUMBER '0'
 
 int getop(char s[]) {
   int i, c;
@@ -27,4 +28,20 @@ int getop(char s[]) {
   if (c != EOF)
     lc = c;
   return NUMBER;
+}
+
+int main() {
+  char s[MAXSTR];
+  int o;
+
+  while ((o = getop(s)) != EOF && o != '\n') {
+    if (o == NUMBER) {
+      puts(s);
+    } else {
+      putchar(o);
+      putchar('\n');
+    }
+  }
+
+  return 0;
 }

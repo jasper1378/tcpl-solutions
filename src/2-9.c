@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int bitcount(unsigned x) {
   int b;
 
@@ -5,4 +7,13 @@ int bitcount(unsigned x) {
     ;
 
   return b;
+}
+
+int main() {
+  unsigned x;
+
+  scanf("%u", &x);
+  printf("%u\n", x);
+
+  return 0;
 }

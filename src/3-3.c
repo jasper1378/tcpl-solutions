@@ -1,4 +1,8 @@
 #include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+
+#define MAXSTR 100
 
 void expand(const char *s1, char *s2) {
   const char *r;
@@ -26,4 +30,17 @@ void expand(const char *s1, char *s2) {
     }
   }
   *w = '\0';
+}
+
+int main() {
+  char s1[MAXSTR];
+  char s2[MAXSTR];
+
+  while (fgets(s1, MAXSTR, stdin) != NULL) {
+    s1[strcspn(s1, "\n")] = '\0';
+    expand(s1, s2);
+    puts(s2);
+  }
+
+  return 0;
 }

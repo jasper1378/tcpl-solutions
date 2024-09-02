@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define ASSERT(cond_, emsg_)                                                   \
   if (!(cond_)) {                                                              \
@@ -43,4 +44,35 @@ void month_day(int year, int yearday, int *pmonth, int *pday) {
     yearday -= daytab[leap][i];
   *pmonth = i;
   *pday = yearday;
+}
+
+int main(int argc, char *argv[]) {
+  int year;
+  int month;
+  int day;
+  int yearday;
+  int pmonth;
+  int pday;
+
+  if (argc == 2) {
+    if (strcmp(argv[1], "day_of_year") == 0) {
+      printf("year = ");
+      scanf("%d", &year);
+      printf("month = ");
+      scanf("%d", &month);
+      printf("day = ");
+      scanf("%d", &day);
+      printf("day_of_year = %d\n", day_of_year(year, month, day));
+      return EXIT_SUCCESS;
+    } else if (strcmp(argv[1], "month_day") == 0) {
+      printf("year = ");
+      scanf("%d", &year);
+      printf("yearday = ");
+      scanf("%d", &yearday);
+      month_day(year, yearday, &pmonth, &pday);
+      printf("month_day = {month = %d, day = %d}\n", pmonth, pday);
+      return EXIT_SUCCESS;
+    }
+  }
+  return EXIT_FAILURE;
 }

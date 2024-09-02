@@ -23,3 +23,21 @@ void ungets(const char *s) {
     ungetch(s[i]);
   }
 }
+
+int main() {
+  char s[BUFSIZE];
+  int i;
+
+  fgets(s, BUFSIZE, stdin);
+  s[strcspn(s, "\n")] = '\0';
+  printf("read: %s\n", s);
+  ungets(s);
+  printf("ungets: %s\n", s);
+  for (i = 0; bufp > 0; ++i) {
+    s[i] = getch();
+  }
+  s[i] = '\0';
+  printf("read: %s\n", s);
+
+  return 0;
+}

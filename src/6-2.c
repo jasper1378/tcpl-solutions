@@ -20,12 +20,74 @@ struct tnode {
   struct tnode *right;
 };
 
-int getword(char *word, int lim);
 struct tnode *addtree(struct tnode *, char *, int n);
 void treeprint(struct tnode *, char t);
+int getword(char *word, int lim);
 struct tnode *talloc(void);
 char *strdup(char *);
 char *strndup(char *, int);
+int strnlen(char *, int);
+
+#define getch() getchar()
+#define ungetch(c_) ungetc((c_), stdin)
+
+int getword(char *word, int lim) {
+  int c;
+  char *w = word;
+
+  while (isspace(c = getch()))
+    ;
+  if (c != EOF)
+    *w++ = c;
+  if (!isalpha(c)) {
+    *w = '\0';
+    return c;
+  }
+  for (; --lim > 0; w++)
+    if (!isalnum(*w = getch())) {
+      ungetch(*w);
+      break;
+    }
+  *w = '\0';
+  return word[0];
+}
+
+struct tnode *talloc(void) {
+  return (struct tnode *)malloc(sizeof(struct tnode));
+}
+
+char *strdup(char *s) {
+  char *p;
+
+  p = (char *)malloc(strlen(s) + 1);
+  if (p != NULL)
+    strcpy(p, s);
+  return p;
+}
+
+char *strndup(char *s, int n) {
+  char *result;
+  size_t len;
+
+  len = strnlen(s, n);
+  result = (char *)malloc(len + 1);
+  if (result == NULL) {
+    return NULL;
+  }
+  result[len] = '\0';
+  return (char *)memcpy(result, s, len);
+}
+
+int strnlen(char *s, int n) {
+  int i;
+
+  for (i = 0; i < n; ++i) {
+    if (s[i] == '\0') {
+      break;
+    }
+  }
+  return i;
+}
 
 struct tnode *addtree(struct tnode *p, char *w, int n) {
   int cond;

@@ -20,7 +20,7 @@ enum op {
   OP_UNK,
   OP_SIN,
   OP_EXP,
-  OP_POW,
+  OP_POW
 };
 
 int getop(char[]);

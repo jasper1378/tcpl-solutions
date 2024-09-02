@@ -15,3 +15,22 @@ void ungetch(int c) {
   }
 }
 
+int main() {
+  int c;
+
+  while (bufp < BUFSIZE) {
+    ungetch(c = getchar());
+    if (c == EOF) {
+      break;
+    }
+  }
+  while (bufp > 0) {
+    if ((c = getch()) == EOF) {
+      fputs("EOF", stdout);
+    } else {
+      putchar(c);
+    }
+  }
+
+  return 0;
+}

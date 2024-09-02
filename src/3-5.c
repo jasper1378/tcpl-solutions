@@ -1,4 +1,7 @@
 #include <math.h>
+#include <stdio.h>
+
+#define MAXSTR 100
 
 int itob(int n, char *s, int b) {
   int sign;
@@ -50,6 +53,19 @@ int itob(int n, char *s, int b) {
   }
 
   *s = '\0';
+
+  return 0;
+}
+
+int main() {
+  int n;
+  int b;
+  char s[MAXSTR];
+
+  scanf("%d", &n);
+  scanf("%d", &b);
+  itob(n, s, b);
+  puts(s);
 
   return 0;
 }

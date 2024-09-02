@@ -22,3 +22,15 @@ void ungetch(int c) {
     buf = c;
   }
 }
+
+int main() {
+  int c;
+  c = getch();
+  printf("get: %c\n", c);
+  ungetch(c);
+  printf("unget: %c\n", c);
+  c = getch();
+  printf("get: %c\n", c);
+
+  return 0;
+}

@@ -41,7 +41,7 @@ enum {
   OP_MOD = 4,
   OP_POW = 5,
   OP_UNK,
-  OP_NUM,
+  OP_NUM
 };
 
 double oadd(double x, double y) { return x + y; }
@@ -168,7 +168,7 @@ int op(const char *str) {
   }
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[]) {
   stack s;
   int i;
   int o;
@@ -198,5 +198,7 @@ int main(int argc, char **argv) {
     }
   }
 
-  printf("%lf\n", s_pop(&s));
+  printf("%f\n", s_pop(&s));
+
+  return 0;
 }

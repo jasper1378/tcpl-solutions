@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAXSTR 100
+
 void squeeze(char *s1, const char *s2) {
   const char *r;
   char *w;
@@ -14,4 +19,18 @@ void squeeze(char *s1, const char *s2) {
     }
   }
   *w = '\0';
+}
+
+int main() {
+  char s1[MAXSTR];
+  char s2[MAXSTR];
+
+  while (fgets(s1, MAXSTR, stdin) != NULL && fgets(s2, MAXSTR, stdin) != NULL) {
+    s1[strcspn(s1, "\n")] = '\0';
+    s2[strcspn(s2, "\n")] = '\0';
+    squeeze(s1, s2);
+    puts(s1);
+  }
+
+  return 0;
 }

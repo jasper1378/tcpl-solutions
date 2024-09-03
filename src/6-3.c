@@ -82,7 +82,7 @@ int getword(char *word, int lim) {
     *w++ = c;
   }
   for (; --lim > 0; w++)
-    if (isspace(*w = getch())) {
+    if (isspace(*w = getch()) || *w == EOF) {
       ungetch(*w);
       break;
     }

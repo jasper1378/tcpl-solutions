@@ -78,7 +78,9 @@ int getword(char *word, int lim) {
       ++linenum;
     }
   }
-  if (c != EOF) {
+  if (c == EOF) {
+    return EOF;
+  } else {
     *w++ = c;
   }
   for (; --lim > 0; w++)

@@ -20,7 +20,7 @@ int getword(char *, int);
 unsigned hash(char *);
 struct nlist *lookup(struct nlist *[HASHSIZE], char *);
 struct nlist *install(struct nlist *[HASHSIZE], char *, char *);
-void free_nlist(struct nlist *p);
+void free_node(struct nlist *p);
 void undef(struct nlist *[HASHSIZE], char *);
 void print(struct nlist *[HASHSIZE]);
 
@@ -100,7 +100,7 @@ struct nlist *install(struct nlist *hashtab[HASHSIZE], char *name, char *defn) {
   return np;
 }
 
-void free_nlist(struct nlist *p) {
+void free_node(struct nlist *p) {
   if (p != NULL) {
     free(p->name);
     free(p->defn);
@@ -120,13 +120,13 @@ void undef(struct nlist *hashtab[HASHSIZE], char *name) {
     return;
   } else if (strcmp(head->name, name) == 0) {
     hashtab[hashval] = head->next;
-    free_nlist(head);
+    free_node(head);
     return;
   } else {
     for (np = head->next; np != NULL; head = np, np = np->next) {
       if (strcmp(np->name, name) == 0) {
         head->next = np->next;
-        free_nlist(np);
+        free_node(np);
         return;
       }
     }

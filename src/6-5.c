@@ -22,6 +22,7 @@ struct nlist *lookup(struct nlist *[HASHSIZE], char *);
 struct nlist *install(struct nlist *[HASHSIZE], char *, char *);
 void free_nlist(struct nlist *p);
 void undef(struct nlist *[HASHSIZE], char *);
+void print(struct nlist *[HASHSIZE]);
 
 char *strdup(char *s) {
   char *p;

@@ -188,7 +188,7 @@ int main() {
     for (p = hashtab[i]; p != NULL;) {
       temp = p;
       p = p->next;
-      free(temp);
+      free_node(temp);
     }
   }
   return out;

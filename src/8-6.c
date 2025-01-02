@@ -1,6 +1,7 @@
 #define _DEFAULT_SOURCE
 
 #include <stdio.h>
+
 #include <unistd.h>
 
 #define NALLOC 1024
@@ -22,7 +23,7 @@ static Header *freep = NULL;
 
 void *malloc_(unsigned);
 static Header *morecore(unsigned);
-void free_(void *ap);
+void free_(void *);
 void *calloc_(unsigned, unsigned);
 void *memset_(void *, int, unsigned);
 

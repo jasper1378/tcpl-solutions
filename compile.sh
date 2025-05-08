@@ -10,4 +10,5 @@ gcc \
   -Wpedantic \
   -fsanitize=address \
   -fsanitize=undefined \
+  -fsanitize=leak \
   $@

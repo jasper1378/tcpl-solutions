@@ -5,6 +5,10 @@
 Solutions to exercises from *The C Programming Language* (2nd edition) by Brian Kernighan and Dennis Ritchie.
 
 <!---
+Interesting bits of code include 5-20, which implements a variant of cdecl (see [cdecl.org](https://cdecl.org)).
+-->
+
+<!---
 
 ## Installation
 

@@ -1550,3 +1550,8 @@ int main(int argc, char *argv[]) {
   }
   return EXIT_SUCCESS;
 }
+
+/* usage example
+ * echo "char (*(*x())[])();" | ./a.out dcl
+ * echo "x () * [] * () char;" | ./a.out undcl
+ */

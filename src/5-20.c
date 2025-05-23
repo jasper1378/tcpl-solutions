@@ -223,6 +223,7 @@ GENERATE_FREE_STRUCT_FUNC(type_deriv_func)
 void dtor_type_deriv_ptr(struct type_deriv_ptr *ptr);
 GENERATE_FREE_STRUCT_FUNC(type_deriv_ptr)
 void dtor_token(struct token *ptr);
+GENERATE_FREE_STRUCT_FUNC(token)
 
 enum e_return lex(enum e_lang lang, const char *str, struct token *tokens,
                   size_t *size);
@@ -1514,6 +1515,7 @@ int main(int argc, char *argv[]) {
   struct token tokens[MAX_LINE];
   size_t tokens_size;
   struct declaration decl;
+  size_t i;
 
   if (argc != 2) {
     return EXIT_FAILURE;
@@ -1540,14 +1542,19 @@ int main(int argc, char *argv[]) {
     tokens_size = MAX_LINE;
     if (lex(plang, line, tokens, &tokens_size) == E_RETURN_ERROR) {
       fprintf(stderr, "lex error\n");
-      continue;
+      return EXIT_FAILURE;
     }
     if (parse(plang, tokens, tokens_size, &decl) == E_RETURN_ERROR) {
       fprintf(stderr, "parse error\n");
-      continue;
+      return EXIT_FAILURE;
     }
     serialize(slang, &decl);
+    for (i = 0; i < tokens_size; ++i) {
+      dtor_token(&tokens[i]);
+    }
+    dtor_declaration(&decl);
   }
+
   return EXIT_SUCCESS;
 }
 
